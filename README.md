@@ -72,4 +72,18 @@ python3 [-u] train_tpch.py [> runninglog_path/log.txt 2>&1 ]
 ## Contact
 
 If you have any questions about the code, please email [XUCHEN.2019@outlook.com](mailto:XUCHEN.2019@outlook.com), [HaiTian_Chen@outlook.com](mailto:HaiTian_Chen@outlook.com)
+#######################
+1. Tải và cài PgSQL
+2. Tài và cài extension pg_hint_plan
+3. Tải database (khác dataset) IMDB: The CSV files used in the paper, which are from May 2013, can be found at http://event.cwi.nl/da/job/imdb.tgz
+4. Import database vào, tạo database tên là imdb, chạy schematext.sql để tạo bảng, sau đó import các file csv vào 
+
+Giờ mới bị tiếp nè, bài báo này từ 2020 nên 1 số thư viện không còn tồn tại version cũ nữa, phải upgrade lên version mới hơn -> sửa code 
+5. Tải source code LEON
+6. Bật môi trường ảo venv lên 
+7. Cài đặt theo như mô tả (lỗi)
+8. Sửa code và sửa version các thư viện => cài đặt thành công 
+9. Sửa util/pg_executor.py nhập thông tin để kết nối đến database vào 
+10. Chạy lệnh python3 train_Job.py > logs/job_train.log 2>&1 để train
+11. Chờ, nếu nó chạy xong nhanh tức là lỗi -> coi  logs/job_train.log để xem log lỗi, fix lỗi rồi chạy lại. Nếu lâu tức là huấn luyện được rồi, chờ thôi, tầm 30p trên macos m1
 

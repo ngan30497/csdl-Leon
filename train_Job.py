@@ -399,7 +399,7 @@ def getKLreg(leveldict, model, oridistribution):
 if __name__ == '__main__':
     logs_name = ''
     ISOTIMEFORMAT = '%m%d-%H%M%S'
-    config = {'log_path': ''}
+    config = {'log_path': './logs'}
     timestamp = str(datetime.datetime.now().strftime(ISOTIMEFORMAT))
     loglogs = '_'.join((logs_name, timestamp))
     log_dir = os.path.join(config['log_path'], loglogs)
