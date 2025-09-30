@@ -347,8 +347,8 @@ def getPG_latency(sqls):
     pg_latency = []
     for i in sqls:
         tem1 = 0
-        for j in range(0, 3):
-            tem1 = tem1 + postgres.GetLatencyFromPg(i, None, verbose=False, check_hint_used=False, timeout=90000,
+        for j in range(0, 1):
+            tem1 = tem1 + postgres.GetLatencyFromPg(i, None, verbose=False, check_hint_used=False, timeout=10000,
                                                     dropbuffer=False)
         latency = tem1 / 3.0
         pg_latency.append(latency)
@@ -437,16 +437,10 @@ if __name__ == '__main__':
     learning_rate = 1e-3
     dropbuffer = False
     # queries for train
-    trainquery = ['1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12a', '13a', '14a', '15a', '16a',
-                  '17a', '18a', '19a', '20a',
-                  '21a', '22a', '23a', '24a', '25a', '26a', '27a', '28a', '29a', '30a', '31a', '32a', '33a']
+    trainquery = ['1a', '2a']
     # queries for test
-    Ttrainquery = ['1a', '2a', '3a', '4a', '5a', '6a', '7a', '8a', '9a', '10a', '11a', '12a', '13a', '14a', '15a',
-                   '16a', '17a', '18a', '19a', '20a', '21a',
-                   '22a', '23a', '24a', '25a', '26a', '27a', '28a', '29a', '30a', '31a', '32a', '33a']
-    testquery = ['1b', '2b', '3b', '4b', '5b', '6b', '7b', '8b', '9b', '10b', '11b', '12b', '13b', '14b', '15b', '16b',
-                 '17b', '18b', '19b', '20b', '21b', '22b',
-                 '23b', '24b', '25b', '26b', '27b', '28b', '29b', '30b', '31b', '32b', '33b']
+    Ttrainquery = ['1a', '2a']
+    testquery = ['1b', '2b']
     dp_Signs = [True for i in range(len(trainquery))]
     sqllist = load_sql_Files(trainquery)
     testsqllist = load_sql_Files(testquery)
@@ -457,10 +451,10 @@ if __name__ == '__main__':
     trainsqls = load_sql(Ttrainsqllist)
     bestplandata = [[[] for _ in range(20)] for _ in range(len(trainquery))]
     bestplanslist = [[] for _ in range(len(sqls))]
-    iteration_num = 30
+    iteration_num = 2
 
     # initial timeout and it will update in dp
-    timeoutlist = setInitialTimeout(sqls, dropbuffer, testtime=3)
+    timeoutlist = setInitialTimeout(sqls, dropbuffer, testtime=1)
     pg_latency_train = getPG_latency(trainsqls)
     print('pg_base_latency_train', pg_latency_train)
     pg_latency_test = getPG_latency(testsqls)
